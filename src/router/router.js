@@ -125,20 +125,12 @@ export const appRouter = [
                 title: '员工管理',
                 name: 'organ_staff',
                 component: resolve => {
-                    require(['@/views/xz/cert/category/index.vue'], resolve);
-                }
-            },
-            {
-                path: 'department',
-                title: '部门管理',
-                name: 'organ_department',
-                component: resolve => {
-                    require(['@/views/xz/cert/list/index.vue'], resolve);
+                    require(['@/views/xz/staff/index.vue'], resolve);
                 }
             },
             {
                 path: 'organ',
-                title: '组织机构维护',
+                title: '组织机构',
                 name: 'organ_management',
                 component: resolve => {
                     require(['@/views/organ/manage.vue'], resolve);

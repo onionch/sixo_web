@@ -18,114 +18,81 @@
 }
 </style>
 <template>
-  <div>
-    <Row>
-      <Card>
-        <Row :gutter="24">
-          <Col span="6">
-          <Input v-model="likeInput" placeholder="关键字查询" size="large">
-          <Button slot="append" type="primary" icon="ios-search"></Button>
-          </Input>
-          </Col>
-          <Col span="3">
-          <Button type="error" long icon="code-download" size="large">下载模板</Button>
-          </Col>
-          <Col span="3">
-          <Button type="success" long icon="more" size="large">导入EXCEL</Button>
-          </Col>
-          <Col span="3">
-          <Button type="warning" long icon="code-download" size="large">导出EXCEL</Button>
-          </Col>
-          <Col span="3" offset="6">
-          <Button type="info" long icon="plus-round" @click="showCreateFrom" size="large">添加信息</Button>
-          </Col>
-        </Row>
-      </Card>
-    </Row>
-    <Row class="margin-top-10">
-      <Card>
-        <Row :gutter="10" class="margin-top-10">
-          <Col span="2">
-          <span class="span-label">人员筛选:</span>
-          </Col>
-          <Col span="4">
-          <Select v-model="model1" size="large" placeholder="请选择部门">
-            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
-          </Col>
-          <Col span="4">
-          <Select v-model="model1" size="large" placeholder="请选择岗位">
-            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
-          </Col>
-          <Col span="2">
-          <Button type="info" long size="large">筛选</Button>
-          </Col>
-        </Row>
-        <!-- <Row :gutter="10" class="margin-top-10">
-          <Col span="2">
-          <span class="span-label">姓名:</span>
-          </Col>
-          <Col span="4">
-          <Input placeholder="关键字查询" size="large"></Input>
-          </Col>
-          <Col span="2">
-          <Button type="info" long size="large">搜索</Button>
-          </Col>
-        </Row> -->
-        <!-- <Row :gutter="10" class="margin-top-10">
-          <Col span="2">
-          <span class="span-label">预警:</span>
-          </Col>
-          <Col span="2">
-          <Button type="warning" long size="large">全部</Button>
-          </Col>
-          <Col span="2">
-          <Button long size="large">一周内</Button>
-          </Col>
-          <Col span="2">
-          <Button long size="large">30天内</Button>
-          </Col>
-          <Col span="2">
-          <Button long size="large">90天内</Button>
-          </Col>
-          <Col span="2">
-          <Button long size="large">已过期</Button>
-          </Col>
-        </Row> -->
-      </Card>
-    </Row>
-    <Row class="margin-top-10">
-      <Card>
+    <div>
         <Row>
-          <Col span="24">
-          <Table :row-class-name="rowClassName" @on-row-click="rowClick" height="400" :columns="columns1" :data="data2"></Table>
-          </Col>
+            <Card>
+                <Row :gutter="24">
+                    <Col span="6">
+                    <Input v-model="likeInput" placeholder="关键字查询" size="large">
+                    <Button slot="append" type="primary" icon="ios-search"></Button>
+                    </Input>
+                    </Col>
+                    <Col span="3" offset="15">
+                    <Button type="info" long icon="plus-round" @click="showCreateFrom" size="large">添加员工</Button>
+                    </Col>
+                </Row>
+            </Card>
         </Row>
-      </Card>
-    </Row>
-    <Modal v-model="showDetail" :title="modalTitle" :styles="{top: '20px'}" width="888" @on-ok="ok" @on-cancel="cancel">
-      <staff-info :staff_id="showIdDetail">
-
-      </staff-info>
-    </Modal>
-    <Modal v-model="showCreateForm" :title="modalTitle" :styles="{top: '20px'}" width="888" @on-ok="ok" @on-cancel="cancel">
-      <create-form>
-
-      </create-form>
-    </Modal>
-  </div>
+        <Row class="margin-top-10">
+            <Card>
+                <Row>
+                    <Col span="24">
+                    <Table :row-class-name="rowClassName" @on-row-click="rowClick" height="400" :columns="userCols" :data="userData"></Table>
+                    <div style="margin: 10px;overflow: hidden">
+                        <Row>
+                            <Col span="10">
+                            <span>当前第{{currentPage}}页(总共{{totalPage}}页)，每页显示20条记录</span>
+                            </Col>
+                            <Col span="4" offset="10">
+                            <ButtonGroup shape="circle">
+                                <Button type="ghost" @click="lastPage">
+                                    <Icon type="chevron-left"></Icon>
+                                    上一页
+                                </Button>
+                                <Button type="ghost" @click="nextPage">
+                                    下一页
+                                    <Icon type="chevron-right"></Icon>
+                                </Button>
+                            </ButtonGroup>
+                            </Col>
+                        </Row>
+                    </div>
+                    </Col>
+                </Row>
+            </Card>
+        </Row>
+        <Modal v-model="showDetail" :title="modalTitle" :styles="{top: '20px'}" width="888" @on-ok="ok" @on-cancel="cancel">
+            <staff-info :staff_id="showIdDetail">
+            </staff-info>
+        </Modal>
+        <Modal v-model="showCreateForm" :title="modalTitle" :styles="{top: '20px'}" width="350" @on-ok="ok" @on-cancel="cancel">
+            <Form :model="formItem">
+                <Row>
+                    <Col>
+                    <FormItem label="姓名:" :label-width="70">
+                        <Input v-model="formItem.name" placeholder="姓名" clearable></Input>
+                    </FormItem>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    <FormItem label="身份证号:" :label-width="70">
+                        <Input v-model="formItem.idcard" placeholder="身份证号" clearable></Input>
+                    </FormItem>
+                    </Col>
+                </Row>
+            </Form>
+        </Modal>
+    </div>
 </template>
 
 <script>
 import util from "../../../libs/util.js";
 import staffInfo from "./info.vue";
-import createForm from "./createForm.vue";
 export default {
     name: "staff",
     components: {
-        staffInfo,
-        createForm
+        staffInfo
     },
     data() {
         return {
@@ -136,55 +103,122 @@ export default {
             showIdDetail: "",
             cityList: [],
             modalTitle: "",
-            columns1: [
+            userCols: [
+                {
+                    type: "index",
+                    width: 60,
+                    align: "center"
+                },
+                {
+                    title: "员工编号",
+                    key: "serial"
+                },
                 {
                     title: "姓名",
                     key: "name"
                 },
                 {
-                    title: "性别",
-                    key: "age"
-                },
-                {
-                    title: "部门",
-                    key: "part"
-                },
-                {
-                    title: "联系电话",
-                    key: "phoneNum"
-                },
-                {
-                    title: "最高学历",
-                    key: "xueli"
-                },
-                {
-                    title: "职称",
-                    key: "zhicheng"
-                },
-                {
                     title: "身份证号",
                     key: "idcard"
+                },
+                {
+                    title: " ",
+                    key: "action",
+                    width: 150,
+                    align: "center",
+                    render: (h, params) => {
+                        return h("div", [
+                            h(
+                                "Button",
+                                {
+                                    props: {
+                                        type: "primary",
+                                        size: "small"
+                                    },
+                                    style: {
+                                        marginRight: "5px"
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.showUpdateFrom(params.row);
+                                        }
+                                    }
+                                },
+                                "编辑"
+                            ),
+                            h(
+                                "Poptip",
+                                {
+                                    props: {
+                                        confirm: true,
+                                        title: "您确定要删除这条数据吗?",
+                                        transfer: true
+                                    },
+                                    on: {
+                                        "on-ok": () => {
+                                            this.delete(params.index);
+                                        }
+                                    }
+                                },
+                                [
+                                    h(
+                                        "Button",
+                                        {
+                                            props: {
+                                                type: "error",
+                                                size: "small"
+                                            },
+                                            style: {
+                                                marginRight: "5px"
+                                            }
+                                        },
+                                        "删除"
+                                    )
+                                ]
+                            )
+                        ]);
+                    }
                 }
             ],
-            data2: []
+            userData: [],
+            formItem: {},
+            currentPage: 1,
+            totalPage: 1
         };
     },
     methods: {
+        lastPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+            } else {
+                this.$Message.info("当前已经是第一页。");
+            }
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPage) {
+                this.currentPage++;
+            } else {
+                this.$Message.info("没有更多的数据了。");
+            }
+        },
         showCreateFrom() {
-            this.modalTitle = "新增员工信息";
+            this.modalTitle = "添加员工信息";
             this.showCreateForm = true;
         },
-        rowClassName(row, index) {
-            return "table-info-pointer";
+        showUpdateFrom(row) {
+            this.modalTitle = "修改员工信息";
+            this.formItem = row;
+            this.showCreateForm = true;
         },
-        rowClick(row, index) {
-            this.showDetail = true;
-            this.showIdDetail = index + "";
-            this.modalTitle = "张三 女 项目部";
-            console.log(index);
+        delete(id) {
+            this.userData.splice(id,1);
+            this.$Message.info("删除成功");
         },
         ok() {
-            this.$Message.info("Clicked ok");
+            this.formItem["serial"] = "1222111122";
+            this.userData.push(this.formItem);
+            this.formItem = {};
+            this.$Message.info("添加员工成功");
         },
         cancel() {
             this.$Message.info("Clicked cancel");
@@ -193,10 +227,10 @@ export default {
     mounted() {
         for (var i = 0; i < 10; i++) {
             var params = {};
-            for (var index in this.columns1) {
-                params[this.columns1[index].key] = "xxxx" + i;
-            }
-            this.data2.push(params);
+            params["serial"] = "0000921" + i;
+            params["name"] = "王晓宇" + i;
+            params["idcard"] = "51130491992019292" + i;
+            this.userData.push(params);
         }
     }
 };

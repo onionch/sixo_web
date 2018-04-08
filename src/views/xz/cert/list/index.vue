@@ -74,7 +74,7 @@
             <Card>
                 <Row>
                     <Col span="24">
-                    <Table :row-class-name="rowClassName" @on-row-click="rowClick" :columns="qualCol" :data="qualData"></Table>
+                    <Table :columns="qualCol" :data="qualData"></Table>
                     <div style="margin: 10px;overflow: hidden">
                         <Row>
                             <Col span="10">
@@ -123,6 +123,7 @@ export default {
     },
     data() {
         return {
+            viewColor: "",
             formItem: {},
             likeInput: "",
             model1: "",
@@ -160,11 +161,110 @@ export default {
                 {
                     title: "备注",
                     key: "remark"
+                },
+                {
+                    title: "预览",
+                    key: "views",
+                    align: "center",
+                    render: (h, params) => {
+                        return h("span", [
+                            h(
+                                "Icon",
+                                {
+                                    props: {
+                                        type: "eye",
+                                        size: "30"
+                                    },
+                                    style: {
+                                        marginRight: "5px",
+                                        cursor: "pointer",
+                                        color: "",
+                                        alt:"预览"
+                                    },
+                                    // on: {
+                                    //     click: () => {
+                                    //         this.rowClick(params.row);
+                                    //     }
+                                    // },
+                                    nativeOn: {
+                                        click: () => {
+                                            this.detail(params.row);
+                                        },
+                                        mouseover: (e) => {
+                                            e.target.style.color="green"
+                                        },
+                                        mouseout: (e) => {
+                                            e.target.style.color=""
+                                        }
+                                    }
+                                },
+                                "预览"
+                            )
+                        ]);
+                    }
+                },
+                {
+                    title: " ",
+                    key: "action",
+                    width: 150,
+                    align: "center",
+                    render: (h, params) => {
+                        return h("div", [
+                            h(
+                                "Button",
+                                {
+                                    props: {
+                                        type: "primary",
+                                        size: "small"
+                                    },
+                                    style: {
+                                        marginRight: "5px"
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.showUpdateFrom(params.row);
+                                        }
+                                    }
+                                },
+                                "编辑"
+                            ),
+                            h(
+                                "Poptip",
+                                {
+                                    props: {
+                                        confirm: true,
+                                        title: "您确定要删除这条数据吗?",
+                                        transfer: true
+                                    },
+                                    on: {
+                                        "on-ok": () => {
+                                            this.delete(params.index);
+                                        }
+                                    }
+                                },
+                                [
+                                    h(
+                                        "Button",
+                                        {
+                                            props: {
+                                                type: "error",
+                                                size: "small"
+                                            },
+                                            style: {
+                                                marginRight: "5px"
+                                            }
+                                        },
+                                        "删除"
+                                    )
+                                ]
+                            )
+                        ]);
+                    }
                 }
             ],
-            categoryList:[
-                {label:"井控证",value:0},
-                {label:"硫化氢证",value:1},
+            categoryList: [
+                { label: "井控证", value: 0 },
+                { label: "硫化氢证", value: 1 }
             ],
             qualData: [],
             currentPage: 1,
@@ -190,17 +290,23 @@ export default {
             this.modalTitle = "添加证书";
             this.showCreateForm = true;
         },
-        rowClassName(row, index) {
-            return "table-info-pointer";
+        showUpdateFrom(row) {
+            this.modalTitle = "修改证书信息";
+            this.formItem = row;
+            this.showCreateForm = true;
         },
-        rowClick(row, index) {
+        delete(id){
+            this.qualData.splice(id,1);
+            this.$Message.info("删除成功");
+        },
+        detail(row) {
             this.showDetail = true;
-            this.showIdDetail = index + "";
+            // this.showIdDetail = index + "";
             this.modalTitle = "证书详细信息";
         },
         ok() {
             this.qualData.push(this.formItem);
-            this.formItem={};
+            this.formItem = {};
         },
         cancel() {
             this.$Message.info("Clicked cancel");

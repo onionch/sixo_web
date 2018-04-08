@@ -120,12 +120,70 @@ export default {
                     key: "authority"
                 },
                 {
-                    title: "有效期",
+                    title: "有效期(月)",
                     key: "validity"
                 },
                 {
                     title: "类型编号",
                     key: "serial"
+                },
+                {
+                    title: " ",
+                    key: "action",
+                    width: 150,
+                    align: "center",
+                    render: (h, params) => {
+                        return h("div", [
+                            h(
+                                "Button",
+                                {
+                                    props: {
+                                        type: "primary",
+                                        size: "small"
+                                    },
+                                    style: {
+                                        marginRight: "5px"
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.showUpdateFrom(params.row);
+                                        }
+                                    }
+                                },
+                                "编辑"
+                            ),
+                            h(
+                                "Poptip",
+                                {
+                                    props: {
+                                        confirm: true,
+                                        title: "您确定要删除这条数据吗?",
+                                        transfer: true
+                                    },
+                                    on: {
+                                        "on-ok": () => {
+                                            this.delete(params.index);
+                                        }
+                                    }
+                                },
+                                [
+                                    h(
+                                        "Button",
+                                        {
+                                            props: {
+                                                type: "error",
+                                                size: "small"
+                                            },
+                                            style: {
+                                                marginRight: "5px"
+                                            }
+                                        },
+                                        "删除"
+                                    )
+                                ]
+                            )
+                        ]);
+                    }
                 }
             ],
             typeData: [],
@@ -152,8 +210,14 @@ export default {
             this.modalTitle = "添加证书类型";
             this.showCreateForm = true;
         },
-        rowClassName(row, index) {
-            return "table-info-pointer";
+        showUpdateFrom(row) {
+            this.modalTitle = "修改信息";
+            this.formItem = row;
+            this.showCreateForm = true;
+        },
+        delete(id){
+            this.typeData.splice(id,1);
+            this.$Message.info("删除成功");
         },
         rowClick(row, index) {
             this.showDetail = true;

@@ -1,5 +1,6 @@
 <style lang="less">
 @import "./login.less";
+
 </style>
 
 <template>
@@ -8,8 +9,9 @@
             <Row type="flex">
                 <Col span="10">
                 <div style="margin-top:2%;">
+                    <a href="#" class="logo"></a>
                     <div class="login-middle-card-title">
-                        川西钻探公司持证管理系统
+                        川庆钻探工程有限公司持证管理系统
                     </div>
                 </div>
                 </Col>

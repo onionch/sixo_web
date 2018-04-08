@@ -8,7 +8,9 @@
             <Row type="flex">
                 <Col span="10">
                 <div style="margin-top:2%;">
-
+                    <div class="login-middle-card-title">
+                        川西钻探公司持证管理系统
+                    </div>
                 </div>
                 </Col>
             </Row>
@@ -16,9 +18,9 @@
         <div class="login-middle">
             <div class="login-con">
                 <Card class="login-middle-card">
-                    <div slot="title" class="login-middle-card-title">
-                        川西钻探公司持证管理系统
-                    </div>
+                    <p slot="title">
+                        欢迎登录
+                    </p>
                     <div class="form-con">
                         <Form ref="loginForm" :model="form" :rules="rules">
                             <FormItem prop="userName">

@@ -83,7 +83,7 @@ em {
                 <Upload multiple type="drag" action="//jsonplaceholder.typicode.com/posts/">
                     <div style="padding: 100px 0px">
                         <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                        <p>点击上传附件</p>
+                        <p>点击上传证书扫描件</p>
                     </div>
                 </Upload>
                 </Col>

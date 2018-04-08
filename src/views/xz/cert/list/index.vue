@@ -40,8 +40,8 @@
                     <span class="span-label">筛选:</span>
                     </Col>
                     <Col span="4">
-                    <Select v-model="model1" size="large" placeholder="请选择证书类型">
-                        <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    <Select v-model="model1" size="large" placeholder="请选择证书类型" clearable>
+                        <Option v-for="item in categoryList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                     </Col>
                     <Col span="2">
@@ -161,6 +161,10 @@ export default {
                     title: "备注",
                     key: "remark"
                 }
+            ],
+            categoryList:[
+                {label:"井控证",value:0},
+                {label:"硫化氢证",value:1},
             ],
             qualData: [],
             currentPage: 1,

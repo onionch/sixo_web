@@ -108,7 +108,7 @@ export default {
         return {
             categoryList: [
                 { label: "井控证", value: "井控证" },
-                { label: "硫化氢证", value: "井控证" }
+                { label: "硫化氢证", value: "硫化氢证" }
             ],
             userList:[
                  { label: "张三", value: "张三" },

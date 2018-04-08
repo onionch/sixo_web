@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div>
-                            <Table v-show="activeName=='1'" stripe :show-header=false :columns="detailCol" :data="detailData"></Table>
+                            <Table v-show="activeName=='1'" stripe :show-header="false" :columns="detailCol" :data="detailData"></Table>
                             <div v-show="activeName=='3'" >
                                 <Table stripe :columns="detailCol1" :data="detailData1"></Table>
                                 <div style="margin: 10px;overflow: hidden">
@@ -113,6 +113,20 @@ export default {
                     key: "value"
                 }
             ],
+            detailData: [
+                {
+                    name: "简称",
+                    value: "第一大区"
+                },
+                {
+                    name: "部门编号",
+                    value: "00928182"
+                },
+                {
+                    name: "上级部门",
+                    value: "大马科技有限公司"
+                }
+            ],
             activeName: "1",
             detailCol1: [
                 {
@@ -135,20 +149,6 @@ export default {
                 {
                     title: "岗位",
                     key: "position"
-                }
-            ],
-            detailData: [
-                {
-                    name: "简称",
-                    value: "第一大区"
-                },
-                {
-                    name: "部门编号",
-                    value: "00928182"
-                },
-                {
-                    name: "上级部门",
-                    value: "大马科技有限公司"
                 }
             ],
             detailData1: [

@@ -11,7 +11,7 @@
                 <div style="margin-top:2%;">
                     <a href="#" class="logo"></a>
                     <div class="login-middle-card-title">
-                        川庆钻探工程有限公司持证管理系统
+                        川西钻探公司持证管理系统
                     </div>
                 </div>
                 </Col>

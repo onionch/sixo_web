@@ -102,7 +102,7 @@ export default {
             //     }
             // });
             this.$router.push({
-                name: "base_cert_diy"
+                name: "home_index"
             });
         },
         handleSubmit() {

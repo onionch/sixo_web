@@ -51,9 +51,11 @@ const app = {
                         // if (menuAuthList.indexOf(item.path) != -1) {
                             
                             menuList.push(item);
+                            state.openedSubmenuArr.push(item.name)
                         // }
                     } else {
                         let len = menuList.push(item);
+                        state.openedSubmenuArr.push(item.name)
                         let childrenArr = [];
                         childrenArr = item
                             .children

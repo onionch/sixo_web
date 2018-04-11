@@ -88,31 +88,31 @@ export const otherRouter = {
 
 // 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
 export const appRouter = [
-        {
-            path: '/base',
-            icon: 'briefcase',
-            title: '证书管理',
-            name: 'staff',
-            component: Main,
-            children: [
-                {
-                    path: 'category',
-                    title: '证书类型',
-                    name: 'base_cert_diy',
-                    component: resolve => {
-                        require(['@/views/xz/cert/category/index.vue'], resolve);
-                    }
-                },
-                {
-                    path: 'cert',
-                    title: '证书列表',
-                    name: 'base_cert_list',
-                    component: resolve => {
-                        require(['@/views/xz/cert/list/index.vue'], resolve);
-                    }
+    {
+        path: '/base',
+        icon: 'briefcase',
+        title: '证书管理',
+        name: 'staff',
+        component: Main,
+        children: [
+            {
+                path: 'category',
+                title: '证书类型',
+                name: 'base_cert_diy',
+                component: resolve => {
+                    require(['@/views/xz/cert/category/index.vue'], resolve);
                 }
-            ]
-        }, 
+            },
+            {
+                path: 'cert',
+                title: '证书列表',
+                name: 'base_cert_list',
+                component: resolve => {
+                    require(['@/views/xz/cert/list/index.vue'], resolve);
+                }
+            }
+        ]
+    },
     {
         path: '/organ',
         icon: 'briefcase',
@@ -134,6 +134,31 @@ export const appRouter = [
                 name: 'organ_management',
                 component: resolve => {
                     require(['@/views/organ/manage.vue'], resolve);
+                }
+            }
+        ]
+    },
+    {
+        path: '/count',
+        icon: 'briefcase',
+        title: '证书统计',
+        name: 'count',
+        component: Main,
+        children: [
+            {
+                path: 'own',
+                title: '持证统计',
+                name: 'count_own',
+                component: resolve => {
+                    require(['@/views/xz/count/own/index.vue'], resolve);
+                }
+            },
+            {
+                path: 'miss',
+                title: '缺证统计',
+                name: 'count_miss',
+                component: resolve => {
+                    require(['@/views/xz/count/miss/index.vue'], resolve);
                 }
             }
         ]

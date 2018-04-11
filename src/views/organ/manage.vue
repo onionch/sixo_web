@@ -171,7 +171,7 @@ export default {
                 },
                 {
                     name: "上级部门",
-                    value: "大马科技有限公司"
+                    value: "川西钻探有限公司"
                 }
             ],
             activeName: "1",
@@ -400,7 +400,7 @@ export default {
             detailData2: [],
             organ: [
                 {
-                    title: "大马科技有限公司",
+                    title: "川西钻探有限公司",
                     expand: true,
                     children: [
                         {
@@ -409,10 +409,10 @@ export default {
                             selected: true,
                             children: [
                                 {
-                                    title: "广汽项目组"
+                                    title: "XX项目组"
                                 },
                                 {
-                                    title: "一汽项目组"
+                                    title: "XXX项目组"
                                 }
                             ]
                         },
@@ -421,10 +421,10 @@ export default {
                             expand: true,
                             children: [
                                 {
-                                    title: "奥迪项目组"
+                                    title: "XXS项目组"
                                 },
                                 {
-                                    title: "奔驰项目组"
+                                    title: "XXE项目组"
                                 }
                             ]
                         }
@@ -462,6 +462,7 @@ export default {
         menuChange(e) {
             this.activeName = e;
             if (e == "2") {
+                this.detailData2=[];
                 this.detailData2.push({
                     serial: "00001",
                     name: "钻井工",

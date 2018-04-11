@@ -175,35 +175,37 @@ export const appRouter = [
                 title: '用户管理',
                 name: 'system_user',
                 component: resolve => {
-                    require(['@/views/system/user/user.vue'], resolve);
+                    require(['@/views/system/user/index.vue'], resolve);
                 }
             }, {
                 path: 'role',
                 title: '角色管理',
                 name: 'system_role',
                 component: resolve => {
-                    require(['@/views/system/role/role.vue'], resolve);
+                    require(['@/views/system/role/index.vue'], resolve);
                 }
             }, {
-                path: 'resource',
-                title: '资源管理',
-                name: 'system_resource',
-                component: resolve => {
-                    require(['@/views/system/resource/resource.vue'], resolve);
-                }
-            }, {
-                path: 'privilege',
+                path: 'function',
                 title: '权限管理',
-                name: 'system_privilege',
+                name: 'system_function',
                 component: resolve => {
-                    require(['@/views/system/privilege/privilege.vue'], resolve);
+                    require(['@/views/system/function/index.vue'], resolve);
                 }
-            }, {
+            },
+            {
+                path: 'organ',
+                title: '部门管理',
+                name: 'system_organ',
+                component: resolve => {
+                    require(['@/views/system/organ/index.vue'], resolve);
+                }
+            }, 
+            {
                 path: 'menu',
                 title: '菜单管理',
                 name: 'system_menu',
                 component: resolve => {
-                    require(['@/views/system/menu/menu.vue'], resolve);
+                    require(['@/views/system/menu/index.vue'], resolve);
                 }
             }
         ]

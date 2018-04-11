@@ -406,9 +406,9 @@ export default {
                         {
                             title: "第一大区",
                             expand: true,
-                            selected: true,
                             children: [
                                 {
+                                    selected: true,
                                     title: "XX项目组"
                                 },
                                 {

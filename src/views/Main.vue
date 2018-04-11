@@ -7,7 +7,7 @@
             <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme" :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
                 <div slot="top">
                     <div v-show="!shrink" class="logo-title">
-                        <span>管理系统</span>
+                        <span>持证管理系统</span>
                     </div>
                     <div v-show="shrink" class="logo-title">
                         <span>CERT</span>

@@ -98,6 +98,7 @@ export const appRouter = [
             {
                 path: 'category',
                 title: '证书类型',
+                icon: 'document-text',
                 name: 'base_cert_diy',
                 component: resolve => {
                     require(['@/views/xz/cert/category/index.vue'], resolve);
@@ -106,6 +107,7 @@ export const appRouter = [
             {
                 path: 'cert',
                 title: '证书列表',
+                icon: 'briefcase',
                 name: 'base_cert_list',
                 component: resolve => {
                     require(['@/views/xz/cert/list/index.vue'], resolve);
@@ -124,6 +126,7 @@ export const appRouter = [
                 path: 'staff',
                 title: '员工管理',
                 name: 'organ_staff',
+                icon: 'person-stalker',
                 component: resolve => {
                     require(['@/views/xz/staff/index.vue'], resolve);
                 }
@@ -131,6 +134,7 @@ export const appRouter = [
             {
                 path: 'organ',
                 title: '组织机构',
+                icon: 'pricetags',
                 name: 'organ_management',
                 component: resolve => {
                     require(['@/views/organ/manage.vue'], resolve);
@@ -149,6 +153,7 @@ export const appRouter = [
                 path: 'own',
                 title: '持证统计',
                 name: 'count_own',
+                icon: 'happy',
                 component: resolve => {
                     require(['@/views/xz/count/own/index.vue'], resolve);
                 }
@@ -157,6 +162,7 @@ export const appRouter = [
                 path: 'miss',
                 title: '缺证统计',
                 name: 'count_miss',
+                icon: 'sad',
                 component: resolve => {
                     require(['@/views/xz/count/miss/index.vue'], resolve);
                 }
@@ -174,6 +180,7 @@ export const appRouter = [
                 path: 'user',
                 title: '用户管理',
                 name: 'system_user',
+                icon: 'person-add',
                 component: resolve => {
                     require(['@/views/system/user/index.vue'], resolve);
                 }
@@ -181,6 +188,7 @@ export const appRouter = [
                 path: 'role',
                 title: '角色管理',
                 name: 'system_role',
+                icon: 'pound',
                 component: resolve => {
                     require(['@/views/system/role/index.vue'], resolve);
                 }
@@ -188,6 +196,7 @@ export const appRouter = [
                 path: 'function',
                 title: '权限管理',
                 name: 'system_function',
+                icon: 'bookmark',
                 component: resolve => {
                     require(['@/views/system/function/index.vue'], resolve);
                 }
@@ -196,6 +205,7 @@ export const appRouter = [
                 path: 'organ',
                 title: '部门管理',
                 name: 'system_organ',
+                icon: 'briefcase',
                 component: resolve => {
                     require(['@/views/system/organ/index.vue'], resolve);
                 }
@@ -204,6 +214,7 @@ export const appRouter = [
                 path: 'menu',
                 title: '菜单管理',
                 name: 'system_menu',
+                icon: 'grid',
                 component: resolve => {
                     require(['@/views/system/menu/index.vue'], resolve);
                 }

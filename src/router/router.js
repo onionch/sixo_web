@@ -5,7 +5,7 @@ export const loginRouter = {
     path: '/login',
     name: 'login',
     meta: {
-        title: 'WELCOME SIXO ADMIN CONSOLE'
+        title: '川西钻探公司持证管理系统'
     },
     component: resolve => {
         require(['@/views/login.vue'], resolve);

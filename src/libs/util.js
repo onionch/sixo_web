@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 let util = {};
 util.title = function (title) {
-    title = title || 'SIXO ADMIN CONSOLE';
+    title = title || '川西钻探公司持证管理系统';
     window.document.title = title;
 };
 

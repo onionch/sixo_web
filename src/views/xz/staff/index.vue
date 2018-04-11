@@ -37,7 +37,7 @@
             <Card>
                 <Row>
                     <Col span="24">
-                    <Table :row-class-name="rowClassName" @on-row-click="rowClick" height="400" :columns="userCols" :data="userData"></Table>
+                    <Table height="400" :columns="userCols" :data="userData"></Table>
                     <div style="margin: 10px;overflow: hidden">
                         <Row>
                             <Col span="10">

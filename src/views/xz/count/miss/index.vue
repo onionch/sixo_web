@@ -27,7 +27,7 @@
                             </FormItem>
                         </Col>
                         <Col span="4" offset="2">
-                            <Button type="info" long icon="plus-round" @click="showCreateFrom" size="large">查询</Button>
+                            <Button type="info" long icon="plus-round" size="large">查询</Button>
                         </Col>
                     </Row>
                 </form>
